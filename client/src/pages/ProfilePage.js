@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import pro from "../Assets/icon.jpg";
+import Navbar from "../components/Navbar";
 
 const ProfilePage = () => {
   const navigate = useNavigate();

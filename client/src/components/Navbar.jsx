@@ -4,9 +4,15 @@ import { Link, useLocation } from "react-router-dom";
 const Navbar = () => {
   const location = useLocation();
   const [isChatbotOpen, setIsChatbotOpen] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState("English");
 
   const toggleChatbot = () => {
     setIsChatbotOpen(!isChatbotOpen);
+  };
+
+  const handleLanguageChange = (event) => {
+    setSelectedLanguage(event.target.value);
+    console.log("Selected Language: ", event.target.value);
   };
 
   return (
@@ -17,9 +23,7 @@ const Navbar = () => {
           <li>
             <Link
               to="/"
-              className={`hover:text-gray-300 ${
-                location.pathname === "/" ? "text-blue-500" : ""
-              }`}
+              className={`hover:text-gray-300 ${location.pathname === "/" ? "text-blue-500" : ""}`}
             >
               <svg
                 className="w-6 h-6"
@@ -32,26 +36,26 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
+            {/* Button to open chatbot with AI bot icon */}
             <button
               onClick={toggleChatbot}
               className="hover:text-gray-300 focus:outline-none"
             >
+              {/* AI Bot icon SVG */}
               <svg
                 className="w-6 h-6"
                 fill="currentColor"
-                viewBox="0 0 20 20"
+                viewBox="0 0 64 64"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <path d="M9 12H7a1 1 0 010-2h2a1 1 0 010 2zm4-2H11a1 1 0 000 2h2a1 1 0 000-2zm-3-7a8 8 0 110 16H5a1 1 0 01-.894-1.447L5.618 13H5a1 1 0 110-2h2a1 1 0 01.894.553L10 15h2a6 6 0 10-1.292-11.657A1 1 0 0111 5H9a1 1 0 01-1-1V4z" />
+                <path d="M32 2C15.5 2 2 15.5 2 32c0 11.2 6.5 21.2 16.1 25.7-.6 1.7-1 3.5-1 5.3 0 2.7 1.1 5.2 2.8 7.1 1.7 1.9 4.1 2.9 6.5 2.9 1.1 0 2.2-.2 3.2-.7 3.1 1.9 6.9 3 10.9 3 10.5 0 19-8.5 19-19S42.5 2 32 2zm-6 46c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8zm14-12c-6.6 0-12-5.4-12-12s5.4-12 12-12 12 5.4 12 12-5.4 12-12 12zm-8-20c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8z" />
               </svg>
             </button>
           </li>
           <li>
             <Link
               to="/profile"
-              className={`hover:text-gray-300 ${
-                location.pathname === "/profile" ? "text-blue-500" : ""
-              }`}
+              className={`hover:text-gray-300 ${location.pathname === "/profile" ? "text-blue-500" : ""}`}
             >
               <svg
                 className="w-6 h-6"
@@ -67,12 +71,31 @@ const Navbar = () => {
               </svg>
             </Link>
           </li>
+
+          {/* Language Dropdown */}
+          <li>
+            <select
+              value={selectedLanguage}
+              onChange={handleLanguageChange}
+              className="bg-gray-800 text-white border border-gray-600 rounded-md py-1 px-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="English">English</option>
+              <option value="Hindi">Hindi</option>
+              <option value="Tamil">Tamil</option>
+              <option value="Bengali">Bengali</option>
+              <option value="Telugu">Telugu</option>
+              <option value="Marathi">Marathi</option>
+              <option value="Gujarati">Gujarati</option>
+              <option value="Punjabi">Punjabi</option>
+              {/* Add more Indian languages as needed */}
+            </select>
+          </li>
         </ul>
       </nav>
 
       {/* Chatbot Popup */}
       {isChatbotOpen && (
-        <div className="fixed bottom-20 right-4 bg-white rounded-lg shadow-lg w-full max-w-sm md:max-w-md p-4 flex flex-col space-y-4 h-[450px]"> {/* Increased height here */}
+        <div className="fixed bottom-20 right-4 bg-white rounded-lg shadow-lg w-full max-w-sm md:max-w-md p-4 flex flex-col space-y-4 h-[450px]">
           <div className="flex justify-between items-center">
             <h2 className="text-lg font-semibold text-gray-800">Chatbot</h2>
             <button

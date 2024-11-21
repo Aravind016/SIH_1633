@@ -1,6 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const StudentHomePage = () => {
+  const navigate = useNavigate(); // Hook for navigation
+
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800">
       {/* Header Section */}
@@ -43,28 +46,31 @@ const StudentHomePage = () => {
       <section className="py-8 px-6 bg-gray-100">
         <h2 className="text-2xl font-semibold text-blue-600">Quick Links</h2>
         <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-          <a href="/alumni-directory" className="p-4 bg-white shadow rounded-lg hover:shadow-lg">
+          <button
+            onClick={() => navigate("/alumni-directory")}
+            className="p-4 bg-white shadow rounded-lg hover:shadow-lg"
+          >
             <h3 className="text-lg font-semibold text-blue-600">Alumni Directory</h3>
             <p className="text-sm text-gray-600">
               Explore profiles of alumni and their achievements.
             </p>
-          </a>
-          <a href="/mentorship" className="p-4 bg-white shadow rounded-lg hover:shadow-lg">
+          </button>
+          <button
+            onClick={() => navigate("/mentorship")}
+            className="p-4 bg-white shadow rounded-lg hover:shadow-lg"
+          >
             <h3 className="text-lg font-semibold text-blue-600">Mentorship Programs</h3>
             <p className="text-sm text-gray-600">Get personalized guidance from alumni.</p>
-          </a>
-          <a href="/forums" className="p-4 bg-white shadow rounded-lg hover:shadow-lg">
+          </button>
+          <button
+            onClick={() => navigate("/forums")}
+            className="p-4 bg-white shadow rounded-lg hover:shadow-lg"
+          >
             <h3 className="text-lg font-semibold text-blue-600">Discussion Forums</h3>
             <p className="text-sm text-gray-600">
               Join conversations and learn from experiences.
             </p>
-          </a>
-          <a href="/events" className="p-4 bg-white shadow rounded-lg hover:shadow-lg">
-            <h3 className="text-lg font-semibold text-blue-600">Upcoming Events</h3>
-            <p className="text-sm text-gray-600">
-              Attend alumni meetups, webinars, and more.
-            </p>
-          </a>
+          </button>
         </div>
       </section>
 
@@ -102,13 +108,6 @@ const StudentHomePage = () => {
           Chat with Assistant
         </button>
       </section>
-
-      {/* Footer */}
-      <footer className="py-4 bg-blue-600 text-white text-center">
-        <p>
-          &copy; {new Date().getFullYear()} Technical Education Dept., Rajasthan
-        </p>
-      </footer>
     </div>
   );
 };
